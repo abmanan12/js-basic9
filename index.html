@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment_13</title>
+</head>
+
+<style>
+    h2 {
+        text-align: center;
+    }
+
+    .bdr {
+        border: 1px solid black;
+        width: 50%;
+        margin: 0 25%;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .red {
+        color: red;
+    }
+</style>
+
+<script>
+
+    // function btn(){
+
+    //     document.getElementById("demo").innerHTML = "Hello World!"
+        // document.getElementById("demo").className = "red"
+    // }
+
+</script>
+
+<body>
+
+    <section>
+
+        <h2>Javascript Chapters 58 - 68</h2>
+        <h2>The DOM(Document Object Model)</h2>
+        <hr>
+
+    </section>
+
+    <section>
+
+        <h2>Demo</h2>
+
+        <div class="bdr">
+
+            <h3 id="headings">The DOM is starting from here</h3>
+            <p id="demo"></p>
+            <!-- <button onclick="btn()">Button</button> -->
+
+        </div>
+
+        <div class="bdr">
+
+            <p id="intro">Finding Elements by ID</p>
+            <p id="demo1"></p>
+
+            <p class="para">Hello World! This is 1st paragraph</p>
+            <p class="para">Hello World! This is 2nd paragraph</p>
+            <p class="para">Hello World! This is 3rd paragraph</p>
+            <p class="para">Hello World! This is 4th paragraph</p>
+            <p id="demo2"></p>
+
+        </div>
+
+        <div class="bdr">
+
+            <p onclick="this.innerHTML='Ooooops!'">Hello World! This is Javascript</p>
+            <p onmouseover="changetxt(this)">Hy! This is Javascript</p>
+
+
+            <form action="">
+                Enter your Name: <input type="text" onchange="upperCase()" id="name">
+            </form>
+
+        </div>
+
+        <div class="bdr">
+
+            <button id="mybtn">Try It</button>
+            <p id="demo3"></p>
+            <p id="demo4"></p>
+
+        </div>
+
+        <div class="bdr" id="div1">
+
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dolor delectus possimus maxime, quibusdam
+                eum harum velit laboriosam repellendus quidem. Veritatis molestias laudantium hic at ipsum rerum
+                temporibus corporis deserunt!</p>
+            <p id="demo5"></p>
+            <button id="mybtn1" onclick="removeDisplay()">Remove</button>
+
+        </div>
+
+        <div class="bdr" id="div2">
+
+            <p class="p1">Hello World! This is 1st paragraph</p>
+            <p class="p2">Hello World! This is 2nd paragraph</p>
+            <p class="p3">Hello World! This is 3rd paragraph</p>
+
+        </div>
+
+        <div class="bdr" id="div3">
+
+            <p id="p01">Hello World! This is 1st paragraph</p>
+            <p id="p02">Hello World! This is 2nd paragraph</p>
+            <p id="p03">Hello World! This is 3rd paragraph</p>
+
+        </div>
+
+        <div class="bdr" id="div4">
+
+            <p id="p001">Hello World! This is 1st paragraph</p>
+            <p id="p002">Hello World! This is 2nd paragraph</p>
+            <p id="p003">Hello World! This is 3rd paragraph</p>
+            <!-- <button id="mybtn2" onclick="removeparagraph()">Remove Paragraph</button> -->
+
+        </div>
+
+    </section>
+
+    <script>
+
+        // styling and writing sentence
+        document.getElementById("demo").innerHTML = "Hello World!"
+        // document.getElementById("demo").className = "red"
+        document.getElementsByTagName("p")[0].style.color = "blue"
+
+        // adding sentence
+        let element = document.getElementById("intro")
+        document.getElementById("demo1").innerHTML = "The text from the intro paragraph is: " + element.innerHTML
+
+        // query selector
+        let x = document.querySelectorAll("p.para");
+        // console.log(x[0].innerHTML)
+        document.getElementById("demo2").innerHTML = "Adding Paragraph: " + x[2].innerHTML
+
+        function changetxt(id) {
+            id.innerHTML = "Yesssssss!"
+        }
+
+        // onload
+
+        // onchange
+        function upperCase() {
+            document.getElementById("name").style.color = 'red'
+            let y = document.getElementById("name")
+            y.value = y.value.toUpperCase()
+        }
+
+        // addEventListener
+        document.getElementById("mybtn").addEventListener("click", displayDate)        
+        function displayDate(){
+            document.getElementById("demo3").innerHTML = Date()
+        }
+
+        // document.getElementById("mybtn").addEventListener("mouseover", message1)
+        // document.getElementById("mybtn").addEventListener("mouseout", message2)
+        // document.getElementById("mybtn").addEventListener("click", message3)
+
+        // function message1(){
+        //     document.getElementById("demo3").innerHTML += "Moused Over! <br>"
+        // }
+        // function message2(){
+        //     document.getElementById("demo3").innerHTML += "Moused Out <br>"
+        // }
+        // function message3(){
+        //     document.getElementById("demo3").innerHTML += "Moused Cliked <br>"
+        // }
+
+        // Resize
+        window.addEventListener("resize", displayRandom)
+        function displayRandom() {
+            document.getElementById("demo4").innerHTML = Math.random()
+        }
+
+        // mousemove
+        document.getElementById("div1").addEventListener("mousemove", displayRandoms)        
+        function displayRandoms() {
+            document.getElementById("demo5").innerHTML = Math.random()
+        }
+        
+        // // removeEventListener 
+        function removeDisplay(){
+        document.getElementById("div1").removeEventListener("mousemove", displayRandoms)        
+        }
+
+        // createElement
+        let para = document.createElement("p")
+        let letter = document.createTextNode("This Paragraph is new here")
+        para.appendChild(letter)
+        para.style.color = "orange"
+        // console.log(para)
+
+        let ele = document.getElementById("div2")
+        ele.appendChild(para)
+
+
+        // insertBefore
+        let para1 = document.createElement("p")
+        let letter1 = document.createTextNode("This Paragraph is new added insert before")
+        para1.appendChild(letter1)
+        para1.style.color = "blue"
+        para1.setAttribute("class", "regular")
+        para1.className += " regular1"
+        // console.log(para1)
+
+        let ele1 = document.getElementById("div3")
+        let p2 = document.getElementById("p02")
+        ele1.insertBefore(para1,p2)
+        
+
+        // removeparagraph
+        function removeparagraph() {
+            document.getElementById("p003").remove()
+        }
+
+        // lastChlid
+        let para2 = document.createElement("p")
+        let letter2 = document.createTextNode("This Paragraph is new here")
+        para2.appendChild(letter2)
+        para2.style.color = "brown"
+        // console.log(para2)
+
+        let div4 = document.getElementById("div4")
+        let p4 = document.getElementById("p003")
+        div4.insertBefore(para2,p4) 
+        // console.log(div4.lastChild)
+
+
+    </script>
+
+
+
+</body>
+
+</html>
